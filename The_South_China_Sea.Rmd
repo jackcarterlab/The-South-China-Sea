@@ -1,0 +1,175 @@
+---
+title: "The South China Sea"
+author: "Jack Carter"  
+date: "1/9/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr, warn.conflicts = FALSE)
+options(dplyr.summarise.inform = FALSE)
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(ggthemes)
+library(naniar)
+library(patchwork)
+library(rvest)
+library(pdftools)
+library(patchwork)
+
+# set the working directory
+path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea/data", fsep = .Platform$file.sep)
+setwd(path)
+
+# read in data sets
+territorial_clashes_data <- read_xls("territorial_clashes_cfr.xls", range = "A1:B7") %>%
+  mutate(clashes = as.numeric(clashes))
+
+  gdp_data <- read_xls("gdp_imf.xls", range = "A1:AU9") %>%
+    rename(country = "GDP, current prices (Purchasing power parity; billions of international dollars)") %>%
+    slice(-1) %>%
+    gather(key = "year", value = "gdp", -1) %>%
+    replace_with_na(replace = list(gdp = "no data")) %>%
+    mutate(gdp = as.numeric(gdp))
+
+    population_data <- read_xls("population_imf.xls", range = "A1:AU9") %>%
+      rename(country = "Population (Millions of people)") %>%
+      slice(-1) %>%
+      gather(key = "year", value = "population", -1) %>%
+      replace_with_na(replace = list(population = "no data")) %>%
+      mutate(population = as.numeric(population))
+  
+# group for analysis
+countries <- c("China", "Taiwan", "Vietnam", "Malaysia", "Philippines", "Brunei Darussalam")
+
+```
+
+## **1. The Claimants**
+
+## **1.1: Competing Claims**  
+Expressed as claim clashes in 2021. A territorial claim clash refers to an area in which one party's territorial claim overlaps with that of another. *(Council on Foreign Relations, 2020)*.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# Territorial clashes plot
+territorial_clashes_data %>%
+  mutate(country = as.factor(country), country = factor(country, levels = c("china", "taiwan", "vietnam", "malaysia", "philippines", "brunei"))) %>%
+  ggplot(aes(x = country, y = clashes, fill = country)) +
+  geom_bar(alpha = 1, stat='identity', position="dodge", show.legend = TRUE) +
+  ggtitle("Territorial Claim Clashes") +
+  xlab("") +
+  ylab("Clashes") +
+  scale_x_discrete(labels = c("China", "Taiwan", "Vietnam", "Malaysia", "Philippines", "Brunei")) +
+  scale_fill_manual(values = c("#D55E00", "#33CC99", "#99CCFF", "#FF9966", "#9999CC", "#CC79A7"), labels = c("China", "Taiwan", "Vietnam", "Malaysia", "Philippines", "Brunei")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 11, color = "gray20"),
+        plot.margin = unit(c(0.5, 0.4, 0.5, 0.4), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.margin=margin(0.5, 0.3, 0.5, 0.3),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows that there are multiple competing claims involving many parties. It also shows how China and Taiwan have the highest number of claim clashes, reflecting their ambitious "nine dash" line in which they claim between 80% and 90% of the South China Sea territory. 
+
+&nbsp;
+
+## **1.2: Asymmetric Power**  
+Expressed as Gross Domestic Product (GDP) and population in 2019. GDP refers to the total sum of goods and services produced at purchasers prices. Population refers to all residents in a given country *(World Bank, 2020)*. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# GDP plot
+China_gdp <- gdp_data %>%
+  filter(country == "China, People's Republic of", year == 2019) %>%
+  select(gdp) %>%
+  rename(China = gdp)
+
+others_combined_gdp <- gdp_data %>%
+  filter(country %in% c("Taiwan Province of China", "Vietnam", "Malaysia", "Philippines", "Brunei Darussalam"), year == 2019) %>%
+  select(gdp) %>%
+  summarize(others_combined = sum(gdp))
+
+gdp_countries <- China_gdp %>%
+  cbind(others_combined_gdp) %>%
+  gather(key = country, value = gdp)
+
+gdp <- gdp_countries %>%
+  mutate(country = as.factor(country), country = factor(country, levels = c("China", "others_combined"))) %>%
+  ggplot(aes(x = country, y = gdp / 10^3, fill = country)) +
+  geom_bar(alpha = 1, stat='identity', position="dodge", show.legend = TRUE) +
+  ggtitle("GDP") +
+  xlab("") +
+  ylab("Trillion (USD)") +
+  guides(size=FALSE) +
+  scale_x_discrete(labels = c("China", "Others")) +
+  scale_fill_manual(values = c("#D55E00", "#56B4E9"), labels = c("China", "Others")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 11, color = "gray20"),
+        plot.margin = unit(c(0.5, 0.4, 0.5, 0), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.margin=margin(0.5, 0.3, 0.5, 0.3),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+# population plot
+China_pop <- population_data %>%
+  filter(country == "China, People's Republic of", year == 2019) %>%
+  select(population) %>%
+  rename(China = population)
+
+others_combined_pop <- population_data %>%
+  filter(country %in% c("Taiwan Province of China", "Vietnam", "Malaysia", "Philippines", "Brunei Darussalam"), year == 2019) %>%
+  select(population) %>%
+  summarize(others_combined = sum(population))
+
+pop_countries <- China_pop %>%
+  cbind(others_combined_pop) %>%
+  gather(key = country, value = population)
+
+population <- pop_countries %>%
+  mutate(country = as.factor(country), country = factor(country, levels = c("China", "others_combined"))) %>%
+  ggplot(aes(x = country, y = population / 10^3, fill = country)) +
+  geom_bar(alpha = 1, stat='identity', position="dodge", show.legend = TRUE) +
+  ggtitle("Population") +
+  xlab("") +
+  ylab("Billion") +
+  scale_x_discrete(labels = c("China", "Others")) +
+  scale_fill_manual(values = c("#D55E00", "#56B4E9"), labels = c("China", "Others")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 11, color = "gray20"),
+        plot.margin = unit(c(0.5, 0.4, 0.5, 0), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.margin=margin(0.5, 0.3, 0.5, 0.3),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+gdp + population + plot_layout(guides = "collect")
+
+```
+
+The data shows that China has a significantly larger GDP and population compared to Taiwan, Vietnam, Malaysia, the Philippines and Brunei combined. This suggests that China has substantially greater power vis a vis its smaller neighbors. 
+
+
