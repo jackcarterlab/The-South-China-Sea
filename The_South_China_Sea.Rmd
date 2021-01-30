@@ -25,7 +25,6 @@ path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea/data",
 setwd(path)
 
 # read in data sets
-# read in data sets
 population_data <- read_xls("population_imf.xls", range = "A1:AU9") %>%
   rename(country = "Population (Millions of people)") %>%
   slice(-1) %>%
@@ -50,7 +49,9 @@ countries <- c("Brunei Darussalam", "China, People's Republic of", "Philippines"
 
 ```
 
-## **1.1: Asymmetric Power**  
+## **1. The Claimants**
+
+### **1.1: Asymmetric Power**  
 Expressed as Gross Domestic Product (GDP) and population in 2019. GDP refers to the total sum of goods and services produced at purchasers prices. Population refers to all residents in a given country *(World Bank, 2020)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
@@ -77,7 +78,7 @@ power_table %>%
   mutate(measure = as.factor(measure), measure = factor(measure, levels = c("gdp", "population", "military_USD"))) %>%
   ggplot(aes(x = measure, y = value, fill = country)) +
   geom_bar(alpha = 1, stat='identity', position="fill", show.legend = TRUE) +
-  ggtitle("Asymetric Power") +
+  ggtitle("Lopsided Capabilities") +
   xlab("") +
   ylab("% of total") +
   scale_x_discrete(labels = c("Population", "GDP", "Military Spending")) +
@@ -97,6 +98,40 @@ power_table %>%
 
 ```
 
-The data shows a significantly larger population, GDP and military spending for China compared to Brunei, Malaysia, the Philippines, Taiwan and Vietnam. This suggests that China has far greater power over its smaller neighbors. 
+The data shows a significantly larger population, GDP and military spending for China compared to Brunei, Malaysia, the Philippines, Taiwan and Vietnam. This suggests that China has far greater power over its smaller neighbors.
+
+&nbsp;
+
+### **1.2: Rising Military Spending**  
+Expressed as total military spending in USD from 1990 to 2019. Military spending refers to current and capital expenditures on the armed forces, including peacekeeping forces, defense ministries and other government agencies engaged in defense projects *(World Bank, 2020)*. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# military spending plot
+military_USD_data %>%
+  mutate(year = as.numeric(year), country = factor(country, levels = c("Brunei Darussalam", "China, People's Republic of", "Philippines", "Malaysia", "Vietnam"))) %>%
+  filter(country %in% countries) %>%
+  ggplot(aes(x = year, y = military_USD/10^9, col = country)) +
+  geom_line(show.legend = TRUE) +
+  ggtitle("Military Spending") +
+  xlab("") +
+  ylab("Billions USD") +
+  scale_color_manual(values = c("#E6AB02", "#D55E00", "#1B9E77", "#7570B3", "#66A61E"), labels = c("Brunei", "China", "Malaysia", "Philippines", "Vietnam")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows a sharp increase in military spending for China between 1990 and 2019. It also shows how insignificant the spending increases of others have been in comparison to that of their large neighbor. It should be noted that time series data for Taiwan is unavailable. 
 
 
