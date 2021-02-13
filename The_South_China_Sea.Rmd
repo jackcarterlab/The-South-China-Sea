@@ -1,5 +1,5 @@
 ---
-title: "The South China Sea"
+title: "The South China Sea Dispute"
 author: "Jack Carter"  
 date: "1/9/2021"
 output: github_document
@@ -21,106 +21,57 @@ library(pdftools)
 library(patchwork)
 
 # set the working directory
-path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea/data", fsep = .Platform$file.sep)
+path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea_Dispute/data", fsep = .Platform$file.sep)
 setwd(path)
 
-# read in data sets
-population_data <- read_xls("population_imf.xls", range = "A1:AU9") %>%
-  rename(country = "Population (Millions of people)") %>%
-  slice(-1) %>%
-  gather(key = "year", value = "population", -1) %>%
-  replace_with_na(replace = list(population = "no data")) %>%
-  mutate(population = as.numeric(population))
-
-gdp_data <- read_xls("gdp_imf.xls", range = "A1:AU9") %>%
-  rename(country = "GDP, current prices (Purchasing power parity; billions of international dollars)") %>%
-  slice(-1) %>%
-  gather(key = "year", value = "gdp", -1) %>%
-  replace_with_na(replace = list(gdp = "no data")) %>%
-  mutate(gdp = as.numeric(gdp))
-
-military_USD_data <- read_xls("Military_spending_USD_World_Bank.xls", range = "A4:BL269") %>%
+military_USD_data <- read_xls("Military_spending.xls", range = "A4:BL268") %>%
   gather(key = "year", value = "military_USD", 35:64) %>%
   rename(country = "Country Name") %>%
   subset(select = -c(2:34))
-  
+
 # group for analysis
-countries <- c("Brunei Darussalam", "China, People's Republic of", "Philippines", "Malaysia", "Taiwan Province of China", "Vietnam")
+countries <- c("China, People's Republic of", "Philippines", "Malaysia", "Taiwan Province of China", "Vietnam")
 
 ```
 
-## **1. The Claimants**
+## **1. The Region**
 
-### **1.1: Asymmetric Power**  
-Expressed as Gross Domestic Product (GDP) and population in 2019. GDP refers to the total sum of goods and services produced at purchasers prices. Population refers to all residents in a given country *(World Bank, 2020)*. 
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-# asymmetric power plot
-pop <- population_data %>%
-  filter(country %in% countries, year == 2019) %>%
-  select(c(country, population))
-
-gdp <- gdp_data %>%
-  filter(country %in% countries, year == 2019) %>%
-  select(gdp)
-
-military <- military_USD_data %>%
-  filter(country %in% countries, year == 2019) %>%
-  summarize(military = military_USD)
-
-power_table <- pop %>%
-  cbind(gdp) %>%
-  cbind(military) %>%
-  gather(key = measure, value = value, -1)
-
-power_table %>%
-  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("gdp", "population", "military_USD"))) %>%
-  ggplot(aes(x = measure, y = value, fill = country)) +
-  geom_bar(alpha = 1, stat='identity', position="fill", show.legend = TRUE) +
-  ggtitle("Lopsided Capabilities") +
-  xlab("") +
-  ylab("% of total") +
-  scale_x_discrete(labels = c("Population", "GDP", "Military Spending")) +
-  scale_fill_manual(values = c("#E6AB02", "#D55E00", "#1B9E77", "#7570B3", "#E7298A", "#66A61E"), labels = c("Brunei", "China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
-  theme_economist_white(gray_bg = FALSE) +
-  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
-        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
-        axis.text = element_text(size = 9, color = "gray30"), 
-        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
-        legend.direction = "vertical", 
-        legend.position = "right",
-        legend.title = element_blank(),
-        legend.text = element_text(size = 12, color = "gray20"),
-        legend.spacing.x = unit(0.25, "cm"),
-        legend.key.size = unit(0.5, "cm"), 
-        legend.key.height = unit(0.75, "cm"))
-
-```
-
-The data shows a significantly larger population, GDP and military spending for China compared to Brunei, Malaysia, the Philippines, Taiwan and Vietnam. This suggests that China has far greater power over its smaller neighbors.
-
-&nbsp;
-
-### **1.2: Rising Military Spending**  
-Expressed as total military spending in USD from 1990 to 2019. Military spending refers to current and capital expenditures on the armed forces, including peacekeeping forces, defense ministries and other government agencies engaged in defense projects *(World Bank, 2020)*. 
+### **1.1: Resources**  
+Expressed as an estimate value of the region's total oil reserves, total natural gas reserves, annual fish stock and annual maritime trade in US Dollars *(CSIS, 2015)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-# military spending plot
-military_USD_data %>%
-  mutate(year = as.numeric(year), country = factor(country, levels = c("Brunei Darussalam", "China, People's Republic of", "Philippines", "Malaysia", "Vietnam"))) %>%
-  filter(country %in% countries) %>%
-  ggplot(aes(x = year, y = military_USD/10^9, col = country)) +
-  geom_line(show.legend = TRUE) +
-  ggtitle("Military Spending") +
+# resources plot
+oil <- 605.44
+oil <- tibble(oil)
+gas <- 995.6
+gas <- tibble(gas)
+fish <- 584.90
+fish <- tibble(fish)
+trade <- 3400
+trade <- tibble(trade)
+
+tidy_resources_value <- oil %>%
+  cbind(gas) %>%
+  cbind(fish) %>%
+  cbind(trade) %>%
+  gather(key = measure, value = value)
+
+tidy_resources_value %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("oil", "gas", "fish", "trade"))) %>%
+  ggplot(aes(x = measure, y = value/10^3, fill = measure)) +
+  geom_bar(stat = "identity", position="dodge", alpha = 0.9, show.legend = T) +
+  ggtitle("Resources") +
   xlab("") +
-  ylab("Billions USD") +
-  scale_color_manual(values = c("#E6AB02", "#D55E00", "#1B9E77", "#7570B3", "#66A61E"), labels = c("Brunei", "China", "Malaysia", "Philippines", "Vietnam")) +
+  ylab("USD (Trillions)") +
+  scale_x_discrete(labels = c("Oil", "Gas", "Fish", "Trade")) +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77"), labels = c("Oil", "Natural Gas", "Fish", "Trade")) +
   theme_economist_white(gray_bg = FALSE) +
   theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
         plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
-        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.text = element_text(size = 9, color = "gray30"),
+        axis.text.x=element_text(vjust = -5),
+        axis.title.x = element_text(size = 9, color = "gray30", vjust = -8),
         axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
         legend.direction = "vertical", 
         legend.position = "right",
@@ -132,6 +83,246 @@ military_USD_data %>%
 
 ```
 
-The data shows a sharp increase in military spending for China between 1990 and 2019. It also shows how insignificant the spending increases of others have been in comparison to that of their large neighbor. It should be noted that time series data for Taiwan is unavailable. 
+The data shows that while oil, natural gas and fish are important, trade appears to be the most significant source of regional wealth. This suggests that control over the waterway is primarily sought after due to its ability to safeguard access to global markets.
+
+&nbsp;
+
+### **1.2: Trade Routes**  
+Expressed as total trade in trillions of US Dollars for selected global shipping lanes *(CSIS, 2021)*.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# trade routes plot
+routes <- tibble(routes = c("Hormuz", "Panama", "SCS", "Suez"))
+trade <- tibble(trade = c(554, 1692, 3400, 300))
+tidy_trade_routes <- routes %>%
+  cbind(trade) %>%
+  mutate(description = c("$0.55 Trillion", "$1.69 Trillion", "$3.4 Trillion", "$0.3 Trillion"))
+
+tidy_trade_routes %>%
+  mutate(routes = as.factor(routes), routes = factor(routes, levels = c("Hormuz", "Panama", "SCS", "Suez"))) %>%
+  ggplot(aes(x = routes, y = trade/10^3, col = routes, size = trade)) +
+  geom_point(alpha = 0.9) +
+  geom_text(aes(label=description),hjust="center", vjust="center", size=c(1.75, 2.5, 3.5, 1.25), colour="#474747") +
+  scale_size_area(max_size = 38, guide = 'none') +
+  guides(colour = guide_legend(override.aes = list(size=7.5))) +
+  ggtitle("Trade Routes") +
+  xlab("") +
+  ylab("USD (Trillions)") +
+  ylim(0, 4) +
+  scale_x_discrete(labels = c("Middle East", "Americas", "East Asia", "North Africa")) +
+  scale_color_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77"), labels = c("Strait of Hormuz", "Panama Canal", "South China Sea", "Suez Canal")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = 0.75, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"),
+        axis.text.x=element_text(vjust = -4),
+        axis.title.x = element_text(size = 9, color = "gray30", vjust = -8),
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows that the South China Sea is significant global shipping lane for total trade respectively. 
+
+&nbsp;
+
+### **1.3: Regional Trade**  
+Expressed as the claimants' import value, export value and the percentage of their total trade which passed through the South China Sea in 2016 *(CSIS, 2016)*.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# trade value plot
+country <- tibble(country = c("China, People's Republic of", "Malaysia", "Philippines", "Taiwan Province of China", "Vietnam"))
+total <- tibble(total = c(39, 58, 72, 40, 86))
+exports <- tibble(exports = c(874, 106, 31, 97, 158))
+imports <- tibble(imports = c(598, 106, 75, 108, 161))
+tidy_trade_value <- country %>%
+  cbind(total) %>%
+  cbind(exports) %>%
+  cbind(imports) %>%
+  gather(key = measure, value = value, -1)
+
+tidy_trade_value %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("imports", "exports", "total"))) %>%
+  ggplot(aes(x = measure, y = value, fill = country)) +
+  geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
+  ggtitle("Regional Trade") +
+  xlab("") +
+  ylab("% of group total") +
+  scale_x_discrete(labels = c("Import Value", "Export Value", "Share of State's Total")) +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"),
+        axis.text.x=element_text(vjust = -4),
+        axis.title.x = element_text(size = 9, color = "gray30", vjust = -8),
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows that China's regional trade is far higher than that of the other claimants. This suggests that it potentially has more to lose if this global sea lane faces disruptions. 
+
+&nbsp;
+
+## **2. The Claimants**
+
+### **2.1: Regional Influence**  
+Expressed as total land, population and gross domestic product (GDP) in 2021 *(Global Firepower, 2021)*. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# lopsided size plot
+Land <- tibble(Land = c(9596961, 329847, 300000, 35980, 331210))
+  Land <- tibble(Land / sum(Land))
+Population <- tibble(Population = c(1394015977, 32652083, 109180815, 23603049, 98721275))
+  Population <- tibble(Population / sum(Population))
+GDP <- tibble(GDP = c(25400000000000, 977500000000, 931000000000, 1213500000000, 686500000000))
+  GDP <- tibble(GDP / sum(GDP))
+Military <- tibble("Military Spending" = c(178200000000, 3850000000, 4250000000, 13000000000, 6390000000))
+  Military <- tibble(Military / sum(Military))
+
+country <- tibble(c("China, People's Republic of", "Malaysia", "Philippines", "Taiwan Province of China", "Vietnam")) %>% rename(country = `c(...)`)
+tidy_size <- country %>%
+    cbind(Land) %>%
+    cbind(Population) %>%
+    cbind(GDP) %>%
+    cbind(Military) %>%
+    gather(key = measure, value = value, -1)
+
+tidy_size %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("Land", "Population", "GDP", "Military Spending"))) %>%
+  ggplot(aes(x = country, y = value, fill = country)) +
+  geom_bar(alpha = 0.9, stat = "identity", position = "dodge") +
+  facet_wrap(~ measure) +
+  ggtitle("") +
+  xlab("") +
+  ylab("% of group total") +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm"),
+        strip.text = element_text(hjust = 0.5, vjust = 1, size = 10, color = "#474747"),
+        panel.spacing = unit(1.5, "lines"),
+        axis.text = element_text(size = 9, color = "gray30"),
+        axis.text.x = element_blank(),
+        axis.title.x = element_text(size = 9, color = "gray30", vjust = -8),
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows a significantly larger landmass, population and GDP for China. This suggests that the country likely has far greater coercive abilities vis a vis its smaller neighbors.
+
+&nbsp;
+
+### **2.2: Military Spending**  
+Expressed as military spending between 1990 and 2020 *(World Bank, 2020)*. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# military spending plot
+military_USD_data %>%
+  mutate(year = as.numeric(year)) %>%
+  mutate(country = factor(country, levels = c("China, People's Republic of", "Malaysia", "Philippines", "Taiwan Province of China", "Vietnam"))) %>%
+  filter(country %in% countries[-4], !is.na(military_USD)) %>%
+  ggplot(aes(x = year, military_USD / 10^9, fill = country)) +
+  geom_area(aes(x = year, y = military_USD / 10^9), alpha = 0.9, position = "stack") +
+  ggtitle("Military Spending") +
+  xlab("") +          
+  ylab("Billions (USD)") +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Vietnam")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"), 
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.margin=margin(1, -15, 1, 0),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows that China's military spending has far outpaced the others, especially from 2000 to 2020. This suggests that China has a far more capable military than its smaller neighbors.  
+
+&nbsp;
+
+### **2.3: Military Capabilities**  
+Expressed as military personnel, aircraft fleet, navy fleet and Submarines in 2021 *(Global Firepower, 2021)*. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
+
+# military power plot
+spending <- tibble(spending = c(178.2, 3.85, 4.25, 13, 6.39))
+personnel <- tibble(personnel = c(2.185, 0.11, 0.125, 0.165, 0.4825))
+aircraft <- tibble(aircraft = c(3260, 147, 179, 739, 247))
+navy <- tibble(navy = c(777, 61, 103, 117, 65))
+submarines <- tibble(submarines = c(79, 2, 0, 4, 6))
+
+country <- tibble(c("China, People's Republic of", "Malaysia", "Philippines", "Taiwan Province of China", "Vietnam")) %>% rename(country = `c(...)`)
+tidy_military <- country %>%
+  cbind(personnel) %>%
+  cbind(aircraft) %>%
+  cbind(navy) %>%
+  cbind(submarines) %>%
+  gather(key = measure, value = value, -1)
+
+tidy_military %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("personnel", "aircraft", "navy", "submarines"))) %>%
+  mutate(country = factor(country, levels = c("China, People's Republic of", "Malaysia", "Philippines", "Taiwan Province of China", "Vietnam"))) %>%
+  ggplot(aes(x = measure, y = value, fill = country)) +
+  geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
+  ggtitle("Military Capabilities") +
+  xlab("") +
+  ylab("% of group total") +
+  scale_x_discrete(labels = c("Armed Forces", "Aircraft", "Navy", "Submarines")) +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
+  theme_economist_white(gray_bg = FALSE) +
+  theme(plot.title = element_text(hjust = 0.5, size = 10, color = "#474747"),
+        plot.margin = unit(c(0.75, 0.75, 0.75, 0.75), "cm"),
+        axis.text = element_text(size = 9, color = "gray30"),
+        axis.text.x=element_text(vjust = -4),
+        axis.title.x = element_text(size = 9, color = "gray30", vjust = -8),
+        axis.title.y = element_text(size = 9, color = "gray30", vjust = 2.5),
+        legend.direction = "vertical", 
+        legend.position = "right",
+        legend.title = element_blank(),
+        legend.text = element_text(size = 12, color = "gray20"),
+        legend.spacing.x = unit(0.25, "cm"),
+        legend.key.size = unit(1, "cm"), 
+        legend.key.height = unit(0.75, "cm"))
+
+```
+
+The data shows far greater military capabilities for China. It also shows how China's most overwhelming capability compared to the others is its navy, suggesting that it may have prioritized this arm of the military in response to the ongoing dispute. 
+
+&nbsp;
+
+
 
 
