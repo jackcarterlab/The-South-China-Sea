@@ -21,7 +21,7 @@ library(pdftools)
 library(patchwork)
 
 # set the working directory
-path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea_Dispute/data", fsep = .Platform$file.sep)
+path <- file.path("C:/Users/HUAWEI/Desktop/China-data/The_South_China_Sea/data", fsep = .Platform$file.sep)
 setwd(path)
 
 # functions
