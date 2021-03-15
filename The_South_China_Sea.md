@@ -1,219 +1,152 @@
-The South China Sea Dispute
+The South China Sea
 ================
 Jack Carter
 1/9/2021
 
 ## **Executive Summary**
 
-The South China Sea is of great strategic importance due to its
-abundance of valuable resources such as oil, natural gas and fish. The
-largest source of regional wealth however is international trade. Trade
-security thus appears to be the single most significant motivation to
-contest this disputed territory.
+The South China Sea is a region of great strategic importance. This has
+led to a series of increasingly contested maritime claims between China,
+Malaysia, the Philippines, Taiwan and Vietnam in recent decades. China’s
+dominance has prompted the US to step up its regional military presence
+to maintain the balance of power since 2012. Yet the US’s current
+military advantage could be short lived if China’s economy continues to
+grow in the future.
 
-Power is not equally distributed among the claimants however. China
-remains by far the largest state involved and, importantly, has the
-highest military spending. It is for this reason that the smaller states
-feel overwhelmed and have called upon the US for support.
-
-The US’s “Pivot to Asia” policy in 2012 has since bought the region an
-extra element of geopolitical competition. The US’s military spending
-remains far higher than China’s. But if China’s economy continues to
-grow, the US could one day find itself facing an equally matched rival
-in East Asia.
-
-The rest of the report analyzes the South China Sea dispute in the
-context of the resources, claimants and global superpowers involved. It
-is organized into the following sections:
+The rest of the report analyzes the dispute in the context of the
+region’s strategic importance, China’s dominance over the other
+claimants and the China-US balance of power. It is organized into the
+following sections:
 
 1.  The Region
 2.  The Claimants  
-3.  Superpower Competition  
-4.  Conclusion
-5.  Sources
+3.  The Superpowers
 
  
 
 ## **1. The Region**
 
-### **1.1: Resources**
-
-Expressed as an estimate value of the region’s total oil reserves, total
-natural gas reserves, annual fish stock and annual maritime trade in US
-Dollars *(CSIS, 2016; CSIS, 2021; Teh et.al., 2019)*.
+1.1: The region’s estimated revenue sources *(CSIS, 2016: CSIS, 2021:
+Teh et.al., 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-The data shows that while oil, natural gas and fish are important, trade
-appears to be the most significant source of regional wealth. This
-suggests that control over the waterway is primarily sought after due to
-its ability to safeguard access to global markets.
-
- 
-
-### **1.2: Global Trade Routes**
-
-Expressed as total trade in trillions of US Dollars for selected global
-shipping lanes *(CSIS, 2016; IFC., 2016; Osler, 2019; Kenawy, 2015)*.
+1.2: The estimated value of trade cargo in trillions of US Dollars
+*(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-The data shows that the South China Sea is significant global shipping
-lane for total trade respectively.
-
- 
-
-### **1.3: Claimants’ Regional Trade**
-
-Expressed as the import value, export value and percentage of the total
-trade for parties to the dispute passing through the South China Sea in
-2016 *(CSIS, 2016)*.
+1.3: The estimated volume of oil cargo in millions of barrels per day in
+2016 *(EIA, 2017)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-The data shows that China’s regional trade is far higher than that of
-the other claimants. This suggests that it potentially has more to lose
-if this global sea lane faces disruptions.
+## **Regional Summary**
+
+The region is characterized by tremendous strategic importance due to
+its abundance of estimated oil and gas reserves, fish supplies and
+international trade flows.
+
+Yet while hydrocarbon reserves and fish supplies may be significant,
+they are easily overshadowed by the value of international trade. The
+region is not only home to the world’s largest international trade
+flows, but also the second largest crude oil flows. This makes it a
+crucial choke point in the global economy and thus a vital national
+interest.
 
  
 
 ## **2. The Claimants**
 
-### **2.1: Regional Influence**
-
-Expressed as total land, population and gross domestic product (GDP) in
-2021 *(Global Firepower, 2021)*.
+2.1: The relative share of regional trade by exports and imports in 2016
+*(CSIS, 2016)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-The data shows a significantly larger landmass, population and GDP for
-China. This suggests that the country likely has far greater coercive
-abilities vis a vis its smaller neighbors.
-
- 
-
-### **2.2: Military Spending**
-
-Expressed as military spending between 1990 and 2019 *(World Bank,
-2019)*.
+2.2: Regional influence by total land, population, GDP and military
+spending in 2021 *(Global Firepower, 2021)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-The data shows that China’s military spending has far outpaced the
-others, especially from 2000 to 2020. This suggests that China has a far
-more capable military than its smaller neighbors.
-
- 
-
-### **2.3: Military Capabilities**
-
-Expressed as military personnel, aircraft fleet and navy fleet in 2021
-*(Global Firepower, 2021)*.
+2.3: The relative share of military spending between 1990 and 2019
+*(World Bank, 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-The data shows far greater military capabilities for China. It also
-shows how China’s most overwhelming capability compared to the others is
-its navy, suggesting that it may have prioritized this arm of the
-military in response to the ongoing dispute.
-
- 
-
-## **3. Superpower Competition**
-
-### **3.1: Global Influence**
-
-Expressed as total land, population and gross domestic product (GDP) in
-2021 *(Global Firepower, 2021)*.
+2.4: The relative share of military capabilities by personnel, aircraft
+and navy in 2021 *(Global Firepower, 2021)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-The data shows that although China has a far larger population, the US
-still has by far the largest military spedning. This suggests that China
-is still a rising power and may one day become more powerfull than the
-US.
+## **Claimant Summary**
+
+The claimants are characterized by a high degree of inequality in both
+size and capabilities. China has by far the largest regional trade
+flows, landmass, population, GDP and military resources.
+
+This suggests that the dispute is highly one-sided in terms of raw
+power, an intuition borne out by the fact that China has now militarized
+more islands than all of the other claimants combined. It is for this
+reason that the US has stepped up its regional military presence since
+2012.
 
  
 
-### **3.2: Military Spending**
+## **3. The Superpowers**
 
-Expressed as military spending between 1990 and 2019 *(World Bank,
-2019)*.
+3.1: The relative share of regional trade by exports and imports in 2016
+*(CSIS, 2016)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-The data shows that since the year 2000, China’s military spending has
-increased rapidly. This suggests that if its economy continues to grow,
-it may one day be able to rival the military spending of the US.
-
- 
-
-### **3.3: Military Capabilities**
-
-Expressed as military personnel, aircraft fleet and navy fleet in 2021
-*(Global Firepower, 2021)*.
+3.2: Global influence by total land, population, GDP and military
+spending in 2021 *(Global Firepower, 2021)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-The data shows that despite having a smaller aircraft fleet, China has a
-larger armed forces and navy fleet. This suggests that China’s relative
-power in the South China Sea will only grow as it continues to
-prioritize the development of its navy.
+3.3: The relative share of military spending between 1990 and 2019
+*(World Bank, 2019)*.
+
+![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+3.4: The relative share of military capabilities by personnel, aircraft
+and navy in 2021 *(Global Firepower, 2021)*.
+
+![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+## **Superpower Summary**
+
+The US appears to depend far less on regional trade, suggesting that its
+increased military presence may be more an attempt to contain a rising
+China rather than to secure its economic interests.
+
+While the balance of power currently appears to be in the US’s favor,
+China’s much larger population means that this could change quickly if
+its economy continues to grow in the future. This is especially relevant
+for the prospect of future conflict, as China would be operating in
+waters closer to home and thus likely have a strategic advantage.
 
  
 
-## **4. Conclusion**
+## **Sources**
 
-The South China Sea dispute is complex due to the resources involved.
-The area is home to an abundant supply of oil, natural gas and fish.
-These is extremely important resources for nations with growing
-industrial economies and populations. The most important of source of
-regional wealth for the claimants however appears to be international
-trade.
+  - Allianz (2016)
+    <https://www.agcs.allianz.com/news-and-insights/reports/panama-canal-expansion.html>
 
-In their bid to ensure their own trade security however, not all of the
-nations involved are equally matched. China towers over the other
-claimants in terms fo raw size and power. Its military capabilities are
-far superior and could continue to grow exponentially relative to its
-smaller neighbors if its economy does not crash and burn.
+  - CSIS (2016) <https://chinapower.csis.org/>
 
-It if for this reason that many of the smaller claimants have called
-upon the US to maintain the regional balance of power. Ever since it’s
-Pivot to Asia policy in 2012, this is precisely what this superpower has
-done. Yet this poses additional security risks by adding another layer
-of geopolitical competition to the region’s fragile security situation.
+  - CSIS (2021) <https://amti.csis.org/>
 
-What will the future hold for a territorial dispute involving great
-strategic importance, mutually incompatible national claims and a
-superpower competition? Will the region take the path of greater
-competition or cooperation? Only time will tell.
+  - EIA (2017) <https://www.eia.gov/todayinenergy/detail.php?id=39932>
 
- 
+  - Global Firepower (2021) <https://www.globalfirepower.com/>
 
-## **5. Sources**
+  - Kenawy (2015) <http://oaji.net/articles/2017/3667-1488117386.pdf>
 
-  - CSIS. (2016). How Much Trade Transits the South China Sea?.
-    <https://chinapower.csis.org/>.
+  - Osler (2019)
+    <https://lloydslist.maritimeintelligence.informa.com/LL1127721/>
 
-  - CSIS. (2021). Asia Maritime Transparency Initiative.
-    <https://amti.csis.org/>.
+  - Teh (2019)
+    <https://oceans.ubc.ca/research/publications/research-reports/>
 
-  - Global Firepower. (2021). GLOBAL FIREPOWER 2021.
-    <https://www.globalfirepower.com/>.
-
-  - IFC. (2016). Panama Canal Expansion—Key to Global Trade.
-    <https://www.ifc.org/>.
-
-  - Kenawy, E. (2015). The expected economic effects of the new Suez
-    Canal project in Egypt. European Journal of Academic Essays. 12 (1),
-    pp.13-22.
-
-  - Osler, D. (2019). Hormuz blockade would mean $554bn hit to seaborne
-    trade. <https://lloydslist.maritimeintelligence.informa.com/>.
-
-  - Teh, L et.al.. (2019). Status, Trends, and the Future of Fisheries
-    in the East and South China Seas. Fisheries Centre Research Reports.
-    27 (1), pp.0-101.
-
-  - World Bank. (2019). World Bank Open Data.
-    <https://data.worldbank.org/>.
+  - World Bank (2019) <https://data.worldbank.org/>
