@@ -5,13 +5,12 @@ Jack Carter
 
 ## **Executive Summary**
 
-The South China Sea is a region of great strategic importance. This has
-led to a series of increasingly contested maritime claims between China,
-Malaysia, the Philippines, Taiwan and Vietnam in recent decades. China’s
-dominance has prompted the US to step up its regional military presence
-to maintain the balance of power since 2012. Yet the US’s current
-military advantage could be short lived if China’s economy continues to
-grow in the future.
+The South China Sea is a region of great strategic importance. This
+appears to have led in recent decades to a series of increasingly
+contested maritime claims between China, Malaysia, the Philippines,
+Taiwan and Vietnam. China’s dominance has prompted the US to step in to
+maintain the regional balance of power. Yet the US’s current military
+advantage could be short lived if China’s economy continues to grow.
 
 The rest of the report analyzes the dispute in the context of the
 region’s strategic importance, China’s dominance over the other
@@ -26,18 +25,18 @@ following sections:
 
 ## **1. The Region**
 
-1.1: Approximate value of the region from various sources *(CSIS, 2016:
+1.1: The approximate value of regional revenue sources *(CSIS, 2016:
 CSIS, 2021: Teh et.al., 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: Approximate trade cargo value in trillions of US Dollars *(CSIS,
-2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
+1.2: The approximate value of trade routes in trillions of US Dollars
+*(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: Approximate oil cargo volume in millions of barrels per day in 2016
-*(EIA, 2017)*.
+1.3: The approximate volume of oil cargo routes in millions of barrels
+per day in 2016 *(EIA, 2017)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -58,25 +57,18 @@ interest.
 
 ## **2. The Claimants**
 
-2.1: The relative share of regional trade by exports and imports in 2016
-*(CSIS, 2016)*.
+2.1: Regional influence by total land, population, GDP and exports in
+2021 *(Global Firepower, 2021, CSIS, 2016)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-2.2: Regional influence by total land, population, GDP and military
-spending in 2021 *(Global Firepower, 2021)*.
+2.2: Mlitary spending between 1990 and 2019 *(World Bank, 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-2.3: The relative share of military spending between 1990 and 2019
-*(World Bank, 2019)*.
+3.3: Coercive power in 2021 *(Global Firepower, 2021)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
-
-2.4: The relative share of military capabilities by personnel, aircraft
-and navy in 2021 *(Global Firepower, 2021)*.
-
-![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ## **Claimant Summary**
 
@@ -94,25 +86,18 @@ reason that the US has stepped up its regional military presence since
 
 ## **3. The Superpowers**
 
-3.1: The relative share of regional trade by exports and imports in 2016
-*(CSIS, 2016)*.
+3.1: Global influence by total land, population, GDP and exports in 2021
+*(Global Firepower, 2021: CSIS, 2016)*.
+
+![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+3.2: Military spending between 1990 and 2019 *(World Bank, 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-3.2: Global influence by total land, population, GDP and military
-spending in 2021 *(Global Firepower, 2021)*.
+3.3: Coercive power in 2021 *(Global Firepower, 2021)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
-
-3.3: The relative share of military spending between 1990 and 2019
-*(World Bank, 2019)*.
-
-![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
-
-3.4: The relative share of military capabilities by personnel, aircraft
-and navy in 2021 *(Global Firepower, 2021)*.
-
-![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ## **Superpower Summary**
 
