@@ -74,7 +74,7 @@ countries <- c("China, People's Republic of", "Philippines", "Malaysia", "Taiwan
 
 ## **Executive Summary**
 
-The South China Sea is a region of great strategic importance. This has led to a series of increasingly contested  maritime claims between China, Malaysia, the Philippines, Taiwan and Vietnam in recent decades. China's dominance has prompted the US to step up its regional military presence to maintain the balance of power since 2012. Yet the US's current military advantage could be short lived if China's economy continues to grow in the future. 
+The South China Sea is a region of great strategic importance. This appears to have led in recent decades to a series of increasingly contested  maritime claims between China, Malaysia, the Philippines, Taiwan and Vietnam. China's dominance has prompted the US to step in to maintain the regional balance of power. Yet the US's current military advantage could be short lived if China's economy continues to grow. 
 
 The rest of the report analyzes the dispute in the context of the region's strategic importance, China's dominance over the other claimants and the China-US balance of power. It is organized into the following sections:
 
@@ -86,29 +86,36 @@ The rest of the report analyzes the dispute in the context of the region's strat
 
 ## **1. The Region**
 
-1.1: Approximate value of the region from various sources *(CSIS, 2016: CSIS, 2021: Teh et.al., 2019)*.
+1.1: The approximate value of regional revenue sources *(CSIS, 2016: CSIS, 2021: Teh et.al., 2019)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
-resource_value <- tibble(oil = 605.44, gas = 995.6,
-                         fish = 584.90, trade = 3400) %>%
-  gather(key = measure, value = value) %>%
-  mutate(time = c("Total", "Total", "Yearly", "Yearly"))
+resource_value <- tibble(resource = c("3. Fish", "4. Trade", 
+                                      "1. Oil", "2. Gas"),
+                         value = c(584.90, 3400, 605.44, 995.6),
+                         label = c("$0.58 Trillion", "$3.4 Trillion",
+                                   "$0.6 Trillion", "$1 Trillion"))
 
 resource_value %>%
-  mutate(measure = factor(measure, levels = c("oil", "gas", "fish", "trade"))) %>%
-  ggplot(aes(x = time, y = value/10^3, fill = measure)) +
-  geom_bar(stat = "identity", position="dodge", alpha = 0.9) +
-  ggtitle("Value") +
+  ggplot(aes(x = resource, y = value/10^3, col = resource, size = value)) +
+  geom_point(alpha = 0.9) +
+  geom_text(aes(label=label),hjust="center", vjust="center", size=c(1.5, 3.5, 1.5, 2.5), colour="#FFFAF0") +
+  scale_size_area(max_size = 38, guide = 'none') +
+  guides(colour = guide_legend(override.aes = list(size=7.5))) +
+  ggtitle("Strategic Importance") +
   xlab("") +
   ylab("Trillions (USD)") +
-  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77"), labels = c("Oil", "Gas", "Fish", "Trade")) +
+  ylim(0, 4.2) +
+  scale_color_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77"), 
+                     labels = c("Total Oil", "Total Gas",
+                                "Annual Fish", "Annual Trade")) +
   theme_economist_white(gray_bg = FALSE) +
-  my_personal_theme
+  my_personal_theme +
+  theme(axis.text.x=element_blank())
 
 ```
 
-1.2: Approximate trade cargo value in trillions of US Dollars *(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
+1.2: The approximate value of trade routes in trillions of US Dollars *(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -123,10 +130,10 @@ trade_routes %>%
   geom_text(aes(label=label),hjust="center", vjust="center", size=c(1.5, 1, 3.25, 2.5), colour="#FFFAF0") +
   scale_size_area(max_size = 38, guide = 'none') +
   guides(colour = guide_legend(override.aes = list(size=7.5))) +
-  ggtitle("Trade Routes") +
+  ggtitle("Trade Cargo") +
   xlab("") +
   ylab("Trillions (USD)") +
-  ylim(0, 4) +
+  ylim(0, 4.2) +
   scale_x_discrete(labels = c("Middle East", "Americas", "East Asia", "North Africa")) +
   scale_color_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77"), labels = c("Strait of Hormuz", "Panama Canal", "South China Sea", "Suez Canal")) +
   theme_economist_white(gray_bg = FALSE) +
@@ -134,7 +141,7 @@ trade_routes %>%
 
 ```
 
-1.3: Approximate oil cargo volume in millions of barrels per day in 2016 *(EIA, 2017)*.
+1.3: The approximate volume of oil cargo routes in millions of barrels per day in 2016 *(EIA, 2017)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -149,7 +156,7 @@ oil_routes %>%
   geom_text(aes(label=label),hjust="center", vjust="center", size=c(3.75, 1.15, 3.25, 1.75), colour="white") +
   scale_size_area(max_size = 38, guide = 'none') +
   guides(colour = guide_legend(override.aes = list(size=7.5))) +
-  ggtitle("Oil Routes") +
+  ggtitle("Oil Cargo") +
   xlab("") +
   ylab("Millions (BPD)") +
   ylim(0, 25) +
@@ -169,32 +176,7 @@ Yet while hydrocarbon reserves and fish supplies may be significant, they are ea
 
 ## **2. The Claimants**
 
-2.1: The relative share of regional trade by exports and imports in 2016 *(CSIS, 2016)*.
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-claimant_trade <- tibble(country = c("China", "Malaysia", "Philippines",
-                                     "Taiwan", "Vietnam"),
-                         imports = c(598, 106, 75, 108, 161),
-                         exports = c(874, 106, 31, 97, 158)) %>%
-  gather(key = measure, value = value, -1) %>%
-  group_by(measure) %>%
-  mutate(value = value / sum(value))
-
-claimant_trade %>%
-  ggplot(aes(x = measure, y = value, fill = country)) +
-  geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
-  ggtitle("Trade") +
-  xlab("") +
-  ylab("Relative Share (%)") +
-  scale_x_discrete(labels = c("Imports", "Exports")) +
-  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
-  theme_economist_white(gray_bg = FALSE) +
-  my_personal_theme
-
-```
-
-2.2: Regional influence by total land, population, GDP and military spending in 2021 *(Global Firepower, 2021)*. 
+2.1: Regional influence by total land, population, GDP and exports in 2021 *(Global Firepower, 2021, CSIS, 2016)*. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, dpi=600}
 
@@ -208,15 +190,13 @@ regional_influence <- tibble(country = c("China", "Malaysia", "Philippines",
                              "GDP" = c(25400000000000, 977500000000,
                                      931000000000, 1213500000000,
                                      686500000000),
-                             "Military Spending" = c(178200000000, 3850000000,
-                                                     4250000000, 13000000000,
-                                                     6390000000)) %>%
+                             "Exports" = c(874, 106, 31, 97, 158)) %>%
   gather(key = measure, value = value, -1) %>%
   group_by(measure) %>%
   mutate(value = value / sum(value))
 
 regional_influence %>%
-  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("Land", "Population", "GDP", "Military Spending"))) %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("Land", "Population", "GDP", "Exports"))) %>%
   ggplot(aes(x = country, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat = "identity", position = "dodge") +
   facet_wrap(~ measure) +
@@ -230,7 +210,7 @@ regional_influence %>%
 
 ```
 
-2.3: The relative share of military spending between 1990 and 2019 *(World Bank, 2019)*. 
+2.2: Mlitary spending between 1990 and 2019 *(World Bank, 2019)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -249,28 +229,31 @@ military_USD_data %>%
 
 ```
 
-2.4: The relative share of military capabilities by personnel, aircraft and navy in 2021 *(Global Firepower, 2021)*. 
+3.3: Coercive power in 2021 *(Global Firepower, 2021)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
 claimant_military_power <- tibble(country = c("China", "Malaysia", "Philippines",
                                               "Taiwan", "Vietnam"),
-                                  personnel = c(2.185, 0.11, 0.125, 0.165, 0.4825),
-                                  aircraft = c(3260, 147, 179, 739, 247),
-                                  navy <- tibble(navy = c(777, 61, 103, 117, 65))) %>%
+                                  aircraft_carriers = c(2, 0, 0, 0, 0),
+                                  destroyers = c(50, 0, 0, 4, 0),
+                                  submarines = c(79, 2, 0, 4, 6),
+                                  fighters = c(1200, 26, 0, 288, 75)) %>%
   gather(key = measure, value = value, -1)  %>%
+  group_by(measure) %>%
   mutate(value = value / sum(value))
 
 claimant_military_power %>%
-  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("personnel", "aircraft", "navy"))) %>%
-  mutate(country = factor(country, levels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam"))) %>%
+  mutate(measure = factor(measure, levels = c("aircraft_carriers", "destroyers", 
+                                              "submarines", "fighters"))) %>%
   ggplot(aes(x = measure, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
-  ggtitle("Military Capabilities") +
+  ggtitle("Coercive Power") +
   xlab("") +
   ylab("Relative Share (%)") +
-  scale_x_discrete(labels = c("Armed Forces", "Aircraft", "Navy")) +
-  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
+  scale_x_discrete(labels = c("Aircraft Carriers", "Destroyers", "Submarines", "Fighter Jets")) +
+  scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), 
+                    labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
   theme_economist_white(gray_bg = FALSE) +
   my_personal_theme
 
@@ -285,31 +268,7 @@ This suggests that the dispute is highly one-sided in terms of raw power, an int
 
 ## **3. The Superpowers**
 
-3.1: The relative share of regional trade by exports and imports in 2016 *(CSIS, 2016)*.
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
-
-superpower_trade <- tibble(country = c("China", "US"),
-                           imports = c(598, 125),
-                           exports = c(874, 83)) %>%
-gather(key = measure, value = value, -1) %>%
-  group_by(measure) %>%
-  mutate(value = value / sum(value))
-
-superpower_trade %>%
-  ggplot(aes(x = measure, y = value, fill = country)) +
-  geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
-  ggtitle("Trade") +
-  xlab("") +
-  ylab("Relative Share (%)") +
-  scale_x_discrete(labels = c("Imports", "Exports")) +
-  scale_fill_manual(values = c("#D55E00", "#0072B2"), labels = c("China", "US")) +
-  theme_economist_white(gray_bg = FALSE) +
-  my_personal_theme
-
-```
-
-3.2: Global influence by total land, population, GDP and military spending in 2021 *(Global Firepower, 2021)*. 
+3.1: Global influence by total land, population, GDP and exports in 2021 *(Global Firepower, 2021: CSIS, 2016)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -317,14 +276,14 @@ global_influence <- tibble(country = c("China", "US"),
                             "Land" = c(9596961, 9826675),
                             "Population" = c(1394015977, 332639102),
                             "GDP" = c(25400000000000, 19500000000000),
-                            "Military Spending" = c(178200000000, 740500000000)) %>%
+                            "Exports" = c(874, 83)) %>%
   gather(key = measure, value = value, -1) %>%
   group_by(measure) %>%
   mutate(value = value / sum(value))
 
 
 global_influence %>%
-  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("Land", "Population", "GDP", "Military Spending"))) %>%
+  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("Land", "Population", "GDP", "Exports"))) %>%
   ggplot(aes(x = country, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat = "identity", position = "dodge") +
   facet_wrap(~ measure) +
@@ -337,7 +296,7 @@ global_influence %>%
 
 ```
 
-3.3: The relative share of military spending between 1990 and 2019 *(World Bank, 2019)*. 
+3.2: Military spending between 1990 and 2019 *(World Bank, 2019)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -356,27 +315,30 @@ military_USD_data %>%
 
 ```
 
-3.4: The relative share of military capabilities by personnel, aircraft and navy in 2021 *(Global Firepower, 2021)*. 
+3.3: Coercive power in 2021 *(Global Firepower, 2021)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
 supperpower_military_power <- tibble(country = c("China", "US"),
-                                      "personnel" = c(2.185, 1.4),
-                                      "aircraft" = c(3260, 13233),
-                                      "navy" = c(777, 490)) %>%
-  gather(key = measure, value = value, -1) %>%
+                                     aircraft_carriers = c(2, 11),
+                                     destroyers = c(50, 92),
+                                     submarines = c(79, 68),
+                                     fighters = c(1200, 1956)) %>%
+  gather(key = measure, value = value, -1)  %>%
   group_by(measure) %>%
   mutate(value = value / sum(value))
 
 supperpower_military_power %>%
-  mutate(measure = as.factor(measure), measure = factor(measure, levels = c("personnel", "aircraft", "navy"))) %>%
+  mutate(measure = factor(measure, levels = c("aircraft_carriers", "destroyers", 
+                                              "submarines", "fighters"))) %>%
   mutate(country = factor(country, levels = c("China", "US"))) %>%
   ggplot(aes(x = measure, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat='identity', position="fill") +
-  ggtitle("Military Capabilities") +
+  ggtitle("Coercive Power") +
   xlab("") +
   ylab("Relative Share (%)") +
-  scale_x_discrete(labels = c("Armed Forces", "Aircraft", "Navy")) +
+  scale_x_discrete(labels = c("Aircraft Carriers", "Destroyers",
+                              "Submarines", "Fighter Jets")) +
   scale_fill_manual(values = c("#D55E00", "#0072B2"), labels = c("China", "US")) +
   theme_economist_white(gray_bg = FALSE) +
   my_personal_theme
