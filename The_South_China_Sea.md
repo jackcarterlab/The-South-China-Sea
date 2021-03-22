@@ -26,18 +26,18 @@ following sections:
 
 ## **1. The Region**
 
-1.1: The region’s estimated revenue sources *(CSIS, 2016: CSIS, 2021:
-Teh et.al., 2019)*.
+1.1: Approximate value of the region from various sources *(CSIS, 2016:
+CSIS, 2021: Teh et.al., 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: The estimated value of trade cargo in trillions of US Dollars
-*(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
+1.2: Approximate trade cargo value in trillions of US Dollars *(CSIS,
+2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: The estimated volume of oil cargo in millions of barrels per day in
-2016 *(EIA, 2017)*.
+1.3: Approximate oil cargo volume in millions of barrels per day in 2016
+*(EIA, 2017)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
