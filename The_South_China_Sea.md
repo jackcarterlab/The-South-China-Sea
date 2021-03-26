@@ -5,17 +5,17 @@ Jack Carter
 
 ## **Executive Summary**
 
-The South China Sea’s high strategic importance appears to have fueled
-increasingly contested maritime claims between China, Malaysia, the
-Philippines, Taiwan and Vietnam in recent decades. China’s growing
-regional dominance has prompted the US to step in to maintain the
-balance of power. But the Western superpower’s military advantage could
-be short lived if the Chinese economy continues to grow in the future.
+The South China Sea is a region of vital geo-strategic importance. This
+appears to have fueled a series of increasingly contested maritime
+claims between China, Malaysia, the Philippines, Taiwan and Vietnam in
+recent decades. China’s growing regional dominance first prompted the US
+to significantly increase its local military presence in 2012. Yet this
+fragile balance of power could be short lived if the Chinese economy
+continues to grow in the future.
 
 The rest of the report analyzes the dispute in the context of the
-region’s strategic importance, China’s regional dominance over other
-claimants and the China-US balance of power. It is organized into the
-following sections:
+region’s strategic importance, China’s regional dominance and the
+China-US balance of power. It is organized into the following sections:
 
 1.  The Region
 2.  The Claimants  
@@ -42,15 +42,15 @@ day *(EIA, 2017)*.
 
 ## **Regional Summary**
 
-The region is characterized by tremendous strategic importance due to
-its abundance of estimated oil and gas reserves, fish supplies and
-international trade flows.
+The region is characterized by tremendous strategic importance as a
+result of its abundance of estimated oil and gas reserves, fish supplies
+and international trade flows.
 
-Yet while hydrocarbon reserves and fish supplies may be significant,
-they are easily overshadowed by the value of international trade. The
-region is not only home to the world’s largest international trade
-flows, but also the second largest crude oil flows. This makes it a
-crucial choke point in the global economy and thus a vital national
+Hydrocarbon reserves and fish supplies are a significant source of
+income, yet they are easily overshadowed by international trade. The
+region is not only home to the world’s largest trade route, but also the
+second largest crude oil transportation route. This makes it a crucial
+choke point in the global economy and thus a vital geo-strategic
 interest.
 
  
