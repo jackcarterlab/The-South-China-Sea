@@ -74,9 +74,9 @@ countries <- c("China, People's Republic of", "Philippines", "Malaysia", "Taiwan
 
 ## **Executive Summary**
 
-The South China Sea is a region of great strategic importance. This appears to have led in recent decades to a series of increasingly contested  maritime claims between China, Malaysia, the Philippines, Taiwan and Vietnam. China's dominance has prompted the US to step in to maintain the regional balance of power. Yet the US's current military advantage could be short lived if China's economy continues to grow. 
+The South China Sea's high strategic importance appears to have fueled increasingly contested  maritime claims between China, Malaysia, the Philippines, Taiwan and Vietnam in recent decades. China's growing regional dominance has prompted the US to step in to maintain the balance of power. But the Western superpower's military advantage could be short lived if the Chinese economy continues to grow in the future. 
 
-The rest of the report analyzes the dispute in the context of the region's strategic importance, China's dominance over the other claimants and the China-US balance of power. It is organized into the following sections:
+The rest of the report analyzes the dispute in the context of the region's strategic importance, China's regional dominance over other claimants and the China-US balance of power. It is organized into the following sections:
 
 1. The Region
 2. The Claimants  
@@ -86,7 +86,7 @@ The rest of the report analyzes the dispute in the context of the region's strat
 
 ## **1. The Region**
 
-1.1: The approximate value of regional revenue sources *(CSIS, 2016: CSIS, 2021: Teh et.al., 2019)*.
+1.1: The approximate value of regional resources in US Dollars *(CSIS, 2016: CSIS, 2021: Teh et.al., 2019)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -115,7 +115,7 @@ resource_value %>%
 
 ```
 
-1.2: The approximate value of trade routes in trillions of US Dollars *(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
+1.2: The approximate value of various trade routes in US Dollars *(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -130,7 +130,7 @@ trade_routes %>%
   geom_text(aes(label=label),hjust="center", vjust="center", size=c(1.5, 1, 3.25, 2.5), colour="#FFFAF0") +
   scale_size_area(max_size = 38, guide = 'none') +
   guides(colour = guide_legend(override.aes = list(size=7.5))) +
-  ggtitle("Trade") +
+  ggtitle("Global Trade") +
   xlab("") +
   ylab("Trillions (USD)") +
   ylim(0, 4.2) +
@@ -142,7 +142,7 @@ trade_routes %>%
 
 ```
 
-1.3: The approximate volume of oil cargo routes in millions of barrels per day in 2016 *(EIA, 2017)*.
+1.3: The approximate volume of various oil cargo routes in barrels per day *(EIA, 2017)*.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -157,7 +157,7 @@ oil_routes %>%
   geom_text(aes(label=label),hjust="center", vjust="center", size=c(3.75, 1.15, 3.25, 1.75), colour="white") +
   scale_size_area(max_size = 38, guide = 'none') +
   guides(colour = guide_legend(override.aes = list(size=7.5))) +
-  ggtitle("Oil") +
+  ggtitle("Global Oil Trade") +
   xlab("") +
   ylab("Millions (BPD)") +
   ylim(0, 25) +
@@ -246,14 +246,13 @@ claimant_military_power <- tibble(country = c("China", "Malaysia", "Philippines"
   mutate(value = value / sum(value))
 
 claimant_military_power %>%
-  mutate(measure = factor(measure, levels = c("aircraft_carriers", "destroyers", 
-                                              "submarines", "fighters"))) %>%
   ggplot(aes(x = measure, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat='identity', position="fill", show.legend = TRUE) +
   ggtitle("Coercive Power") +
   xlab("") +
   ylab("Relative Share (%)") +
-  scale_x_discrete(labels = c("Aircraft Carriers", "Destroyers", "Submarines", "Fighter Jets")) +
+  scale_x_discrete(labels = c("Aircraft Carriers", "Destroyers",
+                              "Fighter Jets", "Submarines")) +
   scale_fill_manual(values = c("#D55E00", "#E6AB02", "#7570B3", "#1B9E77", "#E7298A"), 
                     labels = c("China", "Malaysia", "Philippines", "Taiwan", "Vietnam")) +
   theme_economist_white(gray_bg = FALSE) +
@@ -270,7 +269,7 @@ This suggests that the dispute is highly one-sided in terms of raw power, an int
 
 ## **3. The Superpowers**
 
-3.1: Global influence by total land, population, GDP and exports in 2021 *(Global Firepower, 2021: CSIS, 2016)*. 
+3.1: Global influence by total land, population, GDP and exports *(Global Firepower, 2021: CSIS, 2016: World Bank, 2019)*. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, dpi=600}
 
@@ -278,7 +277,7 @@ global_influence <- tibble(country = c("China", "US"),
                             "Land" = c(9596961, 9826675),
                             "Population" = c(1394015977, 332639102),
                             "GDP" = c(25400000000000, 19500000000000),
-                            "Exports" = c(874, 83)) %>%
+                            "Exports" = c(2.641, 2.515)) %>%
   gather(key = measure, value = value, -1) %>%
   group_by(measure) %>%
   mutate(value = value / sum(value))
@@ -332,8 +331,6 @@ supperpower_military_power <- tibble(country = c("China", "US"),
   mutate(value = value / sum(value))
 
 supperpower_military_power %>%
-  mutate(measure = factor(measure, levels = c("aircraft_carriers", "destroyers", 
-                                              "submarines", "fighters"))) %>%
   mutate(country = factor(country, levels = c("China", "US"))) %>%
   ggplot(aes(x = measure, y = value, fill = country)) +
   geom_bar(alpha = 0.9, stat='identity', position="fill") +
@@ -341,7 +338,7 @@ supperpower_military_power %>%
   xlab("") +
   ylab("Relative Share (%)") +
   scale_x_discrete(labels = c("Aircraft Carriers", "Destroyers",
-                              "Submarines", "Fighter Jets")) +
+                              "Fighter Jets", "Submarines")) +
   scale_fill_manual(values = c("#D55E00", "#0072B2"), labels = c("China", "US")) +
   theme_economist_white(gray_bg = FALSE) +
   my_personal_theme

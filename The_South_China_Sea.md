@@ -5,15 +5,15 @@ Jack Carter
 
 ## **Executive Summary**
 
-The South China Sea is a region of great strategic importance. This
-appears to have led in recent decades to a series of increasingly
-contested maritime claims between China, Malaysia, the Philippines,
-Taiwan and Vietnam. China’s dominance has prompted the US to step in to
-maintain the regional balance of power. Yet the US’s current military
-advantage could be short lived if China’s economy continues to grow.
+The South China Sea’s high strategic importance appears to have fueled
+increasingly contested maritime claims between China, Malaysia, the
+Philippines, Taiwan and Vietnam in recent decades. China’s growing
+regional dominance has prompted the US to step in to maintain the
+balance of power. But the Western superpower’s military advantage could
+be short lived if the Chinese economy continues to grow in the future.
 
 The rest of the report analyzes the dispute in the context of the
-region’s strategic importance, China’s dominance over the other
+region’s strategic importance, China’s regional dominance over other
 claimants and the China-US balance of power. It is organized into the
 following sections:
 
@@ -25,18 +25,18 @@ following sections:
 
 ## **1. The Region**
 
-1.1: The approximate value of regional revenue sources *(CSIS, 2016:
-CSIS, 2021: Teh et.al., 2019)*.
+1.1: The approximate value of regional resources in US Dollars *(CSIS,
+2016: CSIS, 2021: Teh et.al., 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
-1.2: The approximate value of trade routes in trillions of US Dollars
-*(CSIS, 2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
+1.2: The approximate value of various trade routes in US Dollars *(CSIS,
+2016: Allianz, 2016: Osler, 2019: Kenawy, 2015)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-1.3: The approximate volume of oil cargo routes in millions of barrels
-per day in 2016 *(EIA, 2017)*.
+1.3: The approximate volume of various oil cargo routes in barrels per
+day *(EIA, 2017)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -86,8 +86,8 @@ reason that the US has stepped up its regional military presence since
 
 ## **3. The Superpowers**
 
-3.1: Global influence by total land, population, GDP and exports in 2021
-*(Global Firepower, 2021: CSIS, 2016)*.
+3.1: Global influence by total land, population, GDP and exports
+*(Global Firepower, 2021: CSIS, 2016: World Bank, 2019)*.
 
 ![](The_South_China_Sea_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
