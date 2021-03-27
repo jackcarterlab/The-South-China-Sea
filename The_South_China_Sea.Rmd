@@ -157,7 +157,7 @@ oil_routes %>%
   geom_text(aes(label=label),hjust="center", vjust="center", size=c(3.75, 1.15, 3.25, 1.75), colour="white") +
   scale_size_area(max_size = 38, guide = 'none') +
   guides(colour = guide_legend(override.aes = list(size=7.5))) +
-  ggtitle("Global Oil Trade") +
+  ggtitle("Global Oil Cargo") +
   xlab("") +
   ylab("Millions (BPD)") +
   ylim(0, 25) +
