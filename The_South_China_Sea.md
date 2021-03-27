@@ -8,10 +8,10 @@ Jack Carter
 The South China Sea is a region of vital geo-strategic importance. This
 appears to have fueled a series of increasingly contested maritime
 claims between China, Malaysia, the Philippines, Taiwan and Vietnam in
-recent decades. China’s growing regional dominance first prompted the US
-to significantly increase its local military presence in 2012. Yet this
-fragile balance of power could be short lived if the Chinese economy
-continues to grow in the future.
+recent decades. China’s growing regional dominance has prompted the US
+to increase its local military presence in 2012. Yet the resulting
+balance of power could be short lived if the Chinese economy continues
+to grow in the future.
 
 The rest of the report analyzes the dispute in the context of the
 region’s strategic importance, China’s regional dominance and the
@@ -73,14 +73,14 @@ interest.
 ## **Claimant Summary**
 
 The claimants are characterized by a high degree of inequality in both
-size and capabilities. China has by far the largest regional trade
-flows, landmass, population, GDP and military resources.
+size and capabilities. China has by far the largest landmass,
+population, GDP and regional trade flows.
 
-This suggests that the dispute is highly one-sided in terms of raw
-power, an intuition borne out by the fact that China has now militarized
-more islands than all of the other claimants combined. It is for this
-reason that the US has stepped up its regional military presence since
-2012.
+This suggests that the dispute is highly one-sided in terms of raw power
+capabilities, an intuition borne out by the fact that China has now
+militarized more islands than all of the other claimants combined. It
+appears to be for this reason that the US has stepped up its regional
+military presence since 2012.
 
  
 
@@ -101,15 +101,13 @@ reason that the US has stepped up its regional military presence since
 
 ## **Superpower Summary**
 
-The US appears to depend far less on regional trade, suggesting that its
-increased military presence may be more an attempt to contain a rising
-China rather than to secure its economic interests.
+The China-US balance of power currently appears to be in the US’s favor
+as it has superior military capabilities.
 
-While the balance of power currently appears to be in the US’s favor,
-China’s much larger population means that this could change quickly if
+China’s much larger population however means that this could change if
 its economy continues to grow in the future. This is especially relevant
-for the prospect of future conflict, as China would be operating in
-waters closer to home and thus likely have a strategic advantage.
+for the prospect of regional conflict, as China would be operating in
+waters much closer to home and thus likely have a strategic advantage.
 
  
 
