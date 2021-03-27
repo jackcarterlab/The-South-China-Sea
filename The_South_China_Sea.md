@@ -8,9 +8,9 @@ Jack Carter
 The South China Sea is a region of vital geo-strategic importance. This
 appears to have fueled a series of increasingly contested maritime
 claims between China, Malaysia, the Philippines, Taiwan and Vietnam in
-recent decades. China’s growing regional dominance prompted the US
-to step up its local military presence in 2012. The resulting
-balance of power between these geopolitical competitors however could 
+recent decades. China’s growing regional dominance has prompted the US
+to step up its local military presence since 2012. The resulting
+balance of power between these two geopolitical competitors however could 
 be short lived if the Chinese economy continues to grow in the future.
 
 The rest of the report analyzes the dispute in the context of the
